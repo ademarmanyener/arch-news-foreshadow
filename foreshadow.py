@@ -27,6 +27,11 @@ def show_news_homepage():
     news_timestamps = news.find_all('p', attrs={'class': 'timestamp'})
     news_article_contents = news.find_all('div', attrs={'class': 'article-content'})
 
+    if SETTINGS['bottom_up']:
+        news_titles.reverse()
+        news_timestamps.reverse()
+        news_article_contents.reverse()
+
     for new_loop in range(news_len):
         news_title = news_titles[new_loop].find('a').text
         news_timestamp = news_timestamps[new_loop].text
